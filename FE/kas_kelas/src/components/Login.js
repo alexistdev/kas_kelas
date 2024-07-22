@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [msg, setMsg] = useState('');
+    const [msg, setMsg] = useState([]);
     const navigate = useNavigate();
 
 
@@ -19,7 +19,7 @@ function Login() {
 
 
         try {
-            await axios.post('https://api.example.com/login', {
+            await axios.post('http://192.168.100.2:8081/v1/api/auth', {
                 email: email,
                 password: password
             })
@@ -27,7 +27,8 @@ function Login() {
             navigate('/dashboard');
         } catch (error) {
             if (error.response) {
-                setMsg(error.response.data.msg)
+                setMsg(error.response.data.messages)
+                console.log(error.response.data.messages)
             }
         }
     }
@@ -40,9 +41,9 @@ function Login() {
 
                     <div className="signin-form">
                         <h2 className="form-title">Login</h2>
-
+                        <ul>{msg.map((message, index) => <li key={index}>{message}</li>)}</ul>
                         <form onSubmit={handleLogin}>
-                            <p>{msg}</p>
+                            
                             {/* Email input */}
                             <div data-mdb-input-init className="form-outline mb-4">
                                 <input type="email" 
@@ -81,7 +82,7 @@ function Login() {
                             </div>
 
                             {/* Submit button */}
-                            <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-block mb-4">Sign in</button>
+                            <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-block mb-4">Sign in</button>
 
                             {/* Register buttons */}
                             <div className="text-center">
