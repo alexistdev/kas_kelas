@@ -4,7 +4,6 @@ import com.kas_kelas.kas_kelas.dto.LoginDTO;
 import com.kas_kelas.kas_kelas.requests.LoginRequest;
 import com.kas_kelas.kas_kelas.response.ResponseData;
 import com.kas_kelas.kas_kelas.services.AuthService;
-import com.kas_kelas.kas_kelas.services.AuthServiceImp;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/api/auth")

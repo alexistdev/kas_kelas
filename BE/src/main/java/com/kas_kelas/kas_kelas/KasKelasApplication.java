@@ -1,5 +1,8 @@
 package com.kas_kelas.kas_kelas;
 
+import com.kas_kelas.kas_kelas.models.entity.Users;
+import com.kas_kelas.kas_kelas.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,30 +13,24 @@ import java.util.HashMap;
 @SpringBootApplication
 public class KasKelasApplication {
 
+	@Autowired
+	private UserService userService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(KasKelasApplication.class, args);
 	}
 
-//	@Bean
-//	CommandLineRunner seedUser() {
-//		return args -> {
-//			HashMap<String,String> names = new HashMap<>();
-//			names.put("Superadmin","Super Admin");
-//			names.put("Admin","Administrator");
-//			names.put("Admin Gudang","Admin Gudang Input Stock");
-//			names.put("Admin PO","Admin untuk membuat PO");
-//			for (Map.Entry<String, String> set : names.entrySet()) {
-//				RoleDAO roleDAO = RoleDAO.builder()
-//						.name(set.getKey())
-//						.description(set.getValue())
-//						.createdBy("System")
-//						.modifiedBy("System")
-//						.status("1")
-//						.build();
-//				roleService.save(roleDAO);
-//			}
-//		};
-//	}
+	@Bean
+	CommandLineRunner seedUser() {
+		return args -> {
+			Users user = new Users();
+			user.setName("Admin");
+			user.setEmail("admin@gmail.com");
+			user.setPassword("admin");
+			user.setToken("12345678");
+			userService.createUser(user);
+		};
+	}
 
 
 }
