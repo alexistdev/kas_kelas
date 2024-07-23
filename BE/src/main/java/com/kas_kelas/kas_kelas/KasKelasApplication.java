@@ -1,6 +1,7 @@
 package com.kas_kelas.kas_kelas;
 
 import com.kas_kelas.kas_kelas.models.entity.Users;
+import com.kas_kelas.kas_kelas.requests.UserRequest;
 import com.kas_kelas.kas_kelas.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,11 +24,10 @@ public class KasKelasApplication {
 	@Bean
 	CommandLineRunner seedUser() {
 		return args -> {
-			Users user = new Users();
+			UserRequest user = new UserRequest();
 			user.setName("Admin");
 			user.setEmail("admin@gmail.com");
 			user.setPassword("admin");
-			user.setToken("12345678");
 			userService.createUser(user);
 		};
 	}

@@ -15,13 +15,12 @@ public class Users implements Serializable  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message="Name is required")
+
     private String name;
 
-    @NotEmpty(message="Email is required")
+    @Column(unique=true, nullable=false)
     private String email;
 
-    @NotEmpty(message="Password is required")
     private String password;
 
     private String token;
