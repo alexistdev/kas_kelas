@@ -8,12 +8,22 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confPassword, setconfPassword] = useState('');
-    const [msg, setMsg] = useState('');
+    const [msg, setMsg] = useState([]);
 
     const navigate = useNavigate()
 
     const heandleRegister = async (e) => {
         e.preventDefault();
+
+        if (password !== confPassword) {
+            return alert('Password and confirm password do not match')
+        }
+
+        if(name === '' || email === '' || password === '' || confPassword === '') {
+            return alert('Please fill in all fields')
+        }
+
+
         try {
             await axios.post('http://192.168.100.2:8081/v1/api/users', {
                 //data yang ingin kita submit
@@ -39,7 +49,7 @@ const Register = () => {
                     <div className="signup-form">
                         <h2 className="form-title">Register</h2>
 
-                        <p>{msg}</p>
+                        <ul>{msg.map((msg, index) => <li key={index}>{msg}</li>)}</ul>
                         <form onSubmit={heandleRegister} className="register-form" id="register-form">
                             
                             <div className="form-group">
@@ -96,7 +106,7 @@ const Register = () => {
 
 
                             <div className="form-group form-button">
-                                <button name="signup" id="signup" className="form-submit">Register</button>
+                                <button type="submit" name="signup" id="signup" className="form-submit">Register</button>
                             </div>
                         </form>
                     </div>
