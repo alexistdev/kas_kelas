@@ -34985,6 +34985,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .login-box,
 .register-box {
+  align-items: center;
   width: 360px;
 }
 

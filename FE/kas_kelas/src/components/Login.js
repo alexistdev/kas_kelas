@@ -1,116 +1,115 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
-
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [msg, setMsg] = useState([]);
-    const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState([]);
+  const navigate = useNavigate();
+  let [warning, setWarning] = useState("form-control");
 
-
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        
-        if(email === '' || password === '') {
-            alert('Please enter your email and password')
-        }
-
-
-        try {
-            await axios.post('http://192.168.100.2:8081/v1/api/auth', {
-                email: email,
-                password: password
-            })
-            console.log(email)
-            navigate('/dashboard');
-        } catch (error) {
-            if (error.response) {
-                setMsg(error.response.data.messages)
-                console.log(error.response.data.messages)
-            }
-        }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://192.168.100.2:8081/v1/api/auth", {
+        email: email,
+        password: password,
+      });
+      console.log(email);
+      navigate("/login");
+    } catch (error) {
+      if (error.response) {
+        setWarning("form-control is-invalid");
+        setMsg(error.response.data.messages);
+      }
     }
+  };
 
-    return (
-        <section className="sign-in">
-            <div className="container">
-                <div className="signin-content">
+  return (
+    <div className="row align-items-center">
+      <div className="col-md-4 offset-md-4">
+        <div className=" justify-content-between">
+          <div className="login-logo">
+            <h3>Login</h3>
+          </div>
+          {/* /.login-logo */}
+          <div className="card">
+            <div className="card-body login-card-body">
+              <p className="login-box-msg">Sign in to start your session</p>
+              <ul>
+                {msg.map((message, index) => (
+                  <li style={{ listStyle: "none", color: "red" }} key={index}>{message}</li>
+                ))}
+              </ul>
 
-
-                    <div className="signin-form">
-                        <h2 className="form-title">Login</h2>
-                        <ul>{msg.map((message, index) => <li key={index}>{message}</li>)}</ul>
-                        <form onSubmit={handleLogin}>
-                            
-                            {/* Email input */}
-                            <div data-mdb-input-init className="form-outline mb-4">
-                                <input type="email" 
-                                value={email} 
-                                onChange={(e) => setEmail(e.target.value)} 
-                                name='email'
-                                id="form2Example1" className="form-control" />
-                                <label className="form-label" htmlFor="form2Example1">Email address</label>
-                            </div>
-
-                            {/* Password input */}
-                            <div data-mdb-input-init className="form-outline mb-4">
-                                <input type="password" 
-                                    id="password" 
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    name='password'
-                                    className="form-control" />
-                                <label className="form-label" htmlFor="form2Example2">Password</label>
-                            </div>
-
-                            {/* 2 column grid layout for inline styling */}
-                            <div className="row mb-4">
-                                <div className="col d-flex justify-content-center">
-                                    {/* Checkbox */}
-                                    <div className="form-check">
-                                        <input className="form-check-input" type="checkbox" value="" id="form2Example31" defaultChecked />
-                                        <label className="form-check-label" htmlFor="form2Example31"> Remember me </label>
-                                    </div>
-                                </div>
-
-                                <div className="col">
-                                    {/* Simple link */}
-                                    <a href="#!">Forgot password?</a>
-                                </div>
-                            </div>
-
-                            {/* Submit button */}
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary btn-block mb-4">Sign in</button>
-
-                            {/* Register buttons */}
-                            <div className="text-center">
-                                <p>Not a member? <a href="#!">Register</a></p>
-                                <p>or sign up with:</p>
-                                <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-link btn-floating mx-1">
-                                    <i className="fab fa-facebook-f"></i>
-                                </button>
-
-                                <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-link btn-floating mx-1">
-                                    <i className="fab fa-google"></i>
-                                </button>
-
-                                <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-link btn-floating mx-1">
-                                    <i className="fab fa-twitter"></i>
-                                </button>
-
-                                <button type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-link btn-floating mx-1">
-                                    <i className="fab fa-github"></i>
-                                </button>
-                            </div>
-                        </form>
-
+              <form onSubmit={handleLogin} method="post">
+                <div className="input-group mb-3">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    name="email"
+                    className={warning}
+                    placeholder="Email"
+                  />
+                  <div className="input-group-append">
+                    <div className="input-group-text">
+                      <span className="fas fa-envelope" />
                     </div>
+                  </div>
                 </div>
+                <div className="input-group mb-3">
+                  <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    name="password"
+                    className="form-control"
+                    placeholder="Password"
+                  />
+                  <div className="input-group-append">
+                    <div className="input-group-text">
+                      <span className="fas fa-lock" />
+                    </div>
+                  </div>
+                </div>
+                <div className="row ">
+                  {/* /.col */}
+                  <div className="col-4  ">
+                    <button type="submit" className="btn btn-primary btn-block">
+                      Sign In
+                    </button>
+                  </div>
+                  {/* /.col */}
+                </div>
+              </form>
+              <div className="social-auth-links text-center mb-3">
+                <p>- OR -</p>
+                <a href="#" className="btn btn-block btn-primary">
+                  <i className="fab fa-facebook mr-2" /> Sign in using Facebook
+                </a>
+                <a href="#" className="btn btn-block btn-danger">
+                  <i className="fab fa-google-plus mr-2" /> Sign in using
+                  Google+
+                </a>
+              </div>
+              {/* /.social-auth-links */}
+              <p className="mb-1">
+                <a href="forgot-password.html">I forgot my password</a>
+              </p>
+              <p className="mb-0">
+                <a href="/register" className="text-center">
+                  Register a new membership
+                </a>
+              </p>
             </div>
-        </section>
-    )
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Login
+export default Login;

@@ -8,14 +8,17 @@ import SideNav from './components/SideNav';
 import Footer from './components/Footer';
 import Home from './components/Home';
 
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} /> 
+        
+
         <Route 
-          path="/"
+          path="/dashboard"
           element={
             <div>
               <Header />
@@ -25,7 +28,6 @@ function App() {
             </div>
           }
           className="wrapper"
-
         />
       </Routes>
       </BrowserRouter>
