@@ -3,10 +3,8 @@ import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-rou
 import Login from './components/Login';
 import './App.css';
 import Register from './components/Register';
-import Header from './components/Header';
-import SideNav from './components/SideNav';
-import Footer from './components/Footer';
-import Home from './components/Home';
+
+import Dashboard from './components/Dashboard';
 
 
 function App() {
@@ -15,20 +13,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} /> 
-        
-
-        <Route 
-          path="/dashboard"
-          element={
-            <div>
-              <Header />
-              <SideNav />
-              <Home />
-              <Footer />
-            </div>
-          }
-          className="wrapper"
-        />
+        <Route path="/dashboard" element={<Dashboard />}  className="wrapper" />
       </Routes>
       </BrowserRouter>
 

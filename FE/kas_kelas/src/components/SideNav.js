@@ -37,21 +37,10 @@ const SideNav = () => {
         <li className="nav-item">
           <a href="#" className="nav-link">
             <i className="nav-icon far fa-circle text-danger" />
-            <p className="text">Important</p>
+            
           </a>
         </li>
-        <li className="nav-item">
-          <a href="#" className="nav-link">
-            <i className="nav-icon far fa-circle text-warning" />
-            <p>Warning</p>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a href="#" className="nav-link">
-            <i className="nav-icon far fa-circle text-info" />
-            <p>Informational</p>
-          </a>
-        </li>
+        
       </ul>
     </nav>
     {/* /.sidebar-menu */}

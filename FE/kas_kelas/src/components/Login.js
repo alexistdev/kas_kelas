@@ -12,12 +12,17 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://192.168.100.2:8081/v1/api/auth", {
+      const response = await axios.post("http://192.168.100.2:8081/v1/api/auth", {
         email: email,
         password: password,
       });
-      console.log(email);
-      navigate("/login");
+      // localStorage.setItem("token", );
+      let token = response.data.payload.token;
+      let id = response.data.payload.id;
+      localStorage.setItem("token", token);
+      localStorage.setItem("id", id);
+      // console.log(token);
+      navigate("/dashboard");
     } catch (error) {
       if (error.response) {
         setWarning("form-control is-invalid");
