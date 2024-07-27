@@ -22,6 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @PostMapping
     public ResponseEntity<ResponseData<Users>> registration(@Valid @RequestBody UserRequest user, Errors errors) {
         ResponseData<Users> responseData = new ResponseData<>();
