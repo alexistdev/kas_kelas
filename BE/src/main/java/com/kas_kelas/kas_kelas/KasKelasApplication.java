@@ -1,9 +1,6 @@
 package com.kas_kelas.kas_kelas;
 
-import com.kas_kelas.kas_kelas.models.entity.Roles;
-import com.kas_kelas.kas_kelas.models.entity.Users;
-import com.kas_kelas.kas_kelas.models.repository.RoleRepository;
-import com.kas_kelas.kas_kelas.models.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,10 +19,12 @@ public class KasKelasApplication {
 	@Autowired
 	private RoleRepository roleRepository;
 
+	@Autowired
+	private RoleService roleService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(KasKelasApplication.class, args);
 	}
-
 
 //	@Bean
 //	CommandLineRunner init() {
@@ -88,5 +87,6 @@ public class KasKelasApplication {
 //				userRepository.save(user);
 //		};
 //	}
+
 
 }
