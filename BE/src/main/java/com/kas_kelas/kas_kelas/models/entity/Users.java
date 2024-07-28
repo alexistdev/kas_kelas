@@ -1,20 +1,12 @@
 package com.kas_kelas.kas_kelas.models.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.io.Serializable;
-
-@Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @Table(name="users")
-public class Users implements Serializable  {
+public class Users {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,5 +23,10 @@ public class Users implements Serializable  {
     private String password;
 
     private String token;
+
+
+    @ManyToOne
+    @Nullable
+    private Roles role;
 
 }
