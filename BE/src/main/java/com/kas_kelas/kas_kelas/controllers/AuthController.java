@@ -3,7 +3,7 @@ package com.kas_kelas.kas_kelas.controllers;
 import com.kas_kelas.kas_kelas.dto.LoginDTO;
 import com.kas_kelas.kas_kelas.requests.LoginRequest;
 import com.kas_kelas.kas_kelas.response.ResponseData;
-import com.kas_kelas.kas_kelas.services.AuthService;
+import com.kas_kelas.kas_kelas.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @Autowired
-    private AuthService authService;
+    private UserService authService;
 
     @PostMapping
     public ResponseEntity<ResponseData<LoginDTO>> login(@Valid @RequestBody LoginRequest login, Errors errors) {

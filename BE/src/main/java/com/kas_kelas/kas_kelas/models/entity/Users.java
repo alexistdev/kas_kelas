@@ -2,10 +2,9 @@ package com.kas_kelas.kas_kelas.models.entity;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Null;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
+
 
 
 import java.io.Serializable;
@@ -14,7 +13,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Table(name="users")
-public class Users implements Serializable  {
+public class Users {
 
     private static final long serialVersionUID = 1L;
 
