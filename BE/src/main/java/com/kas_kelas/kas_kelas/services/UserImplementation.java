@@ -10,6 +10,7 @@ import com.kas_kelas.kas_kelas.requests.UserRequest;
 import com.kas_kelas.kas_kelas.response.EmailDoubleException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.management.relation.Role;
@@ -27,7 +28,8 @@ public class UserImplementation implements UserService {
 
     private ModelMapper modelMapper;
 
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Users createUser(UserRequest userRequest) throws EmailDoubleException {
@@ -35,7 +37,7 @@ public class UserImplementation implements UserService {
             String token = UUID.randomUUID().toString();
             modelMapper = new ModelMapper();
             Users users = modelMapper.map(userRequest, Users.class);
-            users.setPassword(userRequest.getPassword());
+            users.setPassword(passwordEncoder.encode(userRequest.getPassword()));
             users.setRole(findRoleByName("user"));
             users.setToken(token);
             return userRepository.save(users);
@@ -50,18 +52,26 @@ public class UserImplementation implements UserService {
 
 
     @Override
-    public LoginDTO check_login(LoginRequest loginRequest)  {
+    public LoginDTO check_login(LoginRequest loginRequest) {
         LoginDTO loginDTO = new LoginDTO();
         Users user = userRepository.findByEmail(loginRequest.getEmail());
-        if (user != null && loginRequest.getPassword().equals(user.getPassword())) {
+        try {
+            if (user != null && (authenticateLogin(loginRequest.getPassword(),user.getPassword()))) {
                 loginDTO.setId(String.valueOf(user.getId()));
                 loginDTO.setEmail(user.getEmail());
                 loginDTO.setToken(user.getToken());
                 loginDTO.setName(user.getName());
                 loginDTO.setRoles(user.getRole());
                 return loginDTO;
+            }
+        }catch (Exception e){
+            return null;
         }
         return null;
+    }
+
+    private boolean authenticateLogin(String password1, String password2) throws Exception {
+        return passwordEncoder.matches(password1, password2);
     }
 
     @Override
