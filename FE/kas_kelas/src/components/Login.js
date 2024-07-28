@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -16,12 +16,10 @@ function Login() {
         email: email,
         password: password,
       });
-      // localStorage.setItem("token", );
       let token = response.data.payload.token;
       let id = response.data.payload.id;
       localStorage.setItem("token", token);
       localStorage.setItem("id", id);
-      // console.log(token);
       navigate("/dashboard");
     } catch (error) {
       if (error.response) {
@@ -30,6 +28,12 @@ function Login() {
       }
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token") && localStorage.getItem("id")) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <div className="row align-items-center">

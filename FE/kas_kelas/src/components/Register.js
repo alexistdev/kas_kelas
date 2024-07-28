@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -37,6 +38,12 @@ const Register = () => {
             }
         }
     };
+
+    useEffect(() => {
+        if (localStorage.getItem("token") && localStorage.getItem("id")) {
+            navigate("/dashboard");
+        }
+    }, []);
 
     function checkPassword(value){
         if (value !== ""){

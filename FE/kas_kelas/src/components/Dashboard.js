@@ -11,29 +11,34 @@ const [users, setUsers] = useState([]);
 const [error, setError] = useState('');
 const navigate = useNavigate();
 
-useEffect(() => {
-    try {
-        const token = localStorage.getItem("token");
-        const id = localStorage.getItem("id");
-        const response = axios.get(`http://192.168.100.2:8081/v1/api/users`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(response => {
-            setUsers(response.data);
-        })
-        .catch(error => {
-            navigate("/");
-            setError(error);
-            console.log(error);
-        })
+// useEffect(() => {
+//     try {
+//         const token = localStorage.getItem("token");
+//         const id = localStorage.getItem("id");
+//         const response = axios.get(`http://192.168.100.2:8081/v1/api/users`, {
+//             headers: {
+//                 'Authorization': `Bearer ${token}`
+//             }
+//         })
+//         .then(response => {
+//             setUsers(response.data);
+//         })
+//         .catch(error => {
+//             navigate("/");
+//             setError(error);
+//             console.log(error);
+//         })
         
-    } catch (error) {
-        console.log(error); 
-    }
+//     } catch (error) {
+//         console.log(error); 
+//     }
 
-}, [])
+// }, [])
+    useEffect(() => {
+        if (!localStorage.getItem("token") && !localStorage.getItem("id")) {
+            navigate("/login");
+        }
+    }, []);
 
   return (
       <div>
