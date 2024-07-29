@@ -1,13 +1,13 @@
 package com.kas_kelas.kas_kelas.services;
 
-import com.kas_kelas.kas_kelas.models.entity.Roles;
+import com.kas_kelas.kas_kelas.models.entity.Role;
 
 import java.util.List;
 
 public interface RoleService {
 
-    public Roles createRole(Roles role);
+    public Role createRole(Role role);
 
 
-    public Iterable<Roles> getAllRoles();
+    public Iterable<Role> getAllRoles();
 }

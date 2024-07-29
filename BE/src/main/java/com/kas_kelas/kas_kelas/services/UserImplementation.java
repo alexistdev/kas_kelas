@@ -1,8 +1,7 @@
 package com.kas_kelas.kas_kelas.services;
 
 import com.kas_kelas.kas_kelas.dto.LoginDTO;
-import com.kas_kelas.kas_kelas.models.entity.Menu;
-import com.kas_kelas.kas_kelas.models.entity.Roles;
+import com.kas_kelas.kas_kelas.models.entity.Role;
 import com.kas_kelas.kas_kelas.models.entity.Users;
 import com.kas_kelas.kas_kelas.models.repository.RoleRepository;
 import com.kas_kelas.kas_kelas.models.repository.UserRepository;
@@ -16,8 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.management.relation.Role;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -51,7 +49,7 @@ public class UserImplementation implements UserService {
         }
     }
 
-    private Roles findRoleByName(String roleName){
+    private Role findRoleByName(String roleName){
         return roleRepository.findByName(roleName);
     }
 

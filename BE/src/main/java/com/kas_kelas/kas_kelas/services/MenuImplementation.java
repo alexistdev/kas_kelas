@@ -15,4 +15,9 @@ public class MenuImplementation implements MenuService {
     public Menu createMenu(Menu menu) {
         return menuRepository.save(menu);
     }
+
+    @Override
+    public Iterable<Menu> getAllMenu() {
+        return menuRepository.findAll();
+    }
 }

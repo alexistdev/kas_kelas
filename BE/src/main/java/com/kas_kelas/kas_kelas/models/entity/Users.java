@@ -27,9 +27,8 @@ public class Users {
 
     private String token;
 
-
     @ManyToOne
     @Nullable
-    private Roles role;
+    private Role role;
 
 }

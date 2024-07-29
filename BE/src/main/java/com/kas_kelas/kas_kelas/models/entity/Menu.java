@@ -3,7 +3,6 @@ package com.kas_kelas.kas_kelas.models.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 @Entity
 @Table(name="menus")
@@ -18,14 +17,17 @@ public class Menu implements Serializable {
     @Column(name = "name", unique = true)
     private String name;
 
-    @Column(name= "icon_menu")
+    @Column(name= "icon")
     private String icon;
 
-    @Column(name="order_menu")
+    @Column(name="menu")
     private int order;
 
-    @Column(name="url_menu")
+    @Column(name="url")
     private String url;
+
+//    @ManyToMany(mappedBy = "menus")
+//    private Set<Role> roles;
 
     public Long getId() {
         return id;
@@ -66,4 +68,5 @@ public class Menu implements Serializable {
     public void setUrl(String url) {
         this.url = url;
     }
+
 }
