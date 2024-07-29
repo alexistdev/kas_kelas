@@ -1,26 +1,62 @@
 package com.kas_kelas.kas_kelas.models.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.UuidGenerator;
 
-import java.util.UUID;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
-@Getter
-@Setter
+
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name="roles")
-public class Role {
+@Table(name = "roles")
+public class Role implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @UuidGenerator
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(unique = true)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+
+    @ManyToMany
+    @JoinTable(
+            name= "role_menu",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name= "menu_id")
+    )
+    private List<Menu> menuList;
+
+    public Role() {
+    }
+
+    public Role(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Menu> getMenuList() {
+        return menuList;
+    }
+
+    public void setMenuList(List<Menu> menuList) {
+        this.menuList = menuList;
+    }
 }

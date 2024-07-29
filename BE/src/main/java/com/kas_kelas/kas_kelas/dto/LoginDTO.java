@@ -1,10 +1,13 @@
 package com.kas_kelas.kas_kelas.dto;
 
-import com.kas_kelas.kas_kelas.models.entity.Roles;
+import com.kas_kelas.kas_kelas.models.entity.Menu;
+import com.kas_kelas.kas_kelas.models.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,6 +23,6 @@ public class LoginDTO {
 
     private String token;
 
-    private Roles roles;
+    private Role roles;
 
 }

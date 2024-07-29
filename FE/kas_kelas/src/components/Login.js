@@ -18,8 +18,11 @@ function Login() {
       });
       let token = response.data.payload.token;
       let id = response.data.payload.id;
+      let menuList = response.data.payload.menuList;
+
       localStorage.setItem("token", token);
       localStorage.setItem("id", id);
+      localStorage.setItem("menuList", JSON.stringify(menuList));
       navigate("/dashboard");
     } catch (error) {
       if (error.response) {

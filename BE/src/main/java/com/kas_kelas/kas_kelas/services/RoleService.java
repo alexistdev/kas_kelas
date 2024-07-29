@@ -9,5 +9,5 @@ public interface RoleService {
     public Role createRole(Role role);
 
 
-    public List<Role> getAllRoles();
+    public Iterable<Role> getAllRoles();
 }

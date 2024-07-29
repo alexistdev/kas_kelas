@@ -2,9 +2,12 @@ package com.kas_kelas.kas_kelas.models.entity;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
 @Table(name="users")
 public class Users {
 
@@ -24,9 +27,8 @@ public class Users {
 
     private String token;
 
-
     @ManyToOne
     @Nullable
-    private Roles role;
+    private Role role;
 
 }

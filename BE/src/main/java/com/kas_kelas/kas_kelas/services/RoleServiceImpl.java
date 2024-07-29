@@ -5,9 +5,6 @@ import com.kas_kelas.kas_kelas.models.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class RoleServiceImpl implements RoleService{
 
@@ -20,9 +17,9 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public List<Role> getAllRoles() {
-        List<Role> roles = new ArrayList<>();
-        roleRepository.findAll().forEach(roles::add);
+    public Iterable<Role> getAllRoles() {
+
+        Iterable<Role> roles = roleRepository.findAll();
         return roles;
     }
 }
