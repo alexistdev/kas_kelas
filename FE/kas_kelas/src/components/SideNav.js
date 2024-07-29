@@ -34,13 +34,19 @@ const SideNav = () => {
         {/* Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library */}
         <li className="nav-header">LABELS</li>
+        
         <li className="nav-item">
           <a href="#" className="nav-link">
             <i className="nav-icon far fa-circle text-danger" />
-            
+            Dashboard (menulist[0].name)
           </a>
         </li>
-        
+              <li className="nav-item">
+                <a href="#" className="nav-link">
+                  <i className="nav-icon far fa-circle text-warning" />
+                  Transaksi (menulist[1].name)
+                </a>
+              </li>
       </ul>
     </nav>
     {/* /.sidebar-menu */}
