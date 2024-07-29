@@ -1,5 +1,11 @@
 import React from 'react'
 
+
+function logout(){
+
+  localStorage.clear();
+  window.location.reload();
+}
 function Header() {
   return (
     <div>
@@ -44,7 +50,7 @@ function Header() {
     <li className="nav-item dropdown">
       <a className="nav-link" data-toggle="dropdown" href="#">
         <i className="far fa-comments" />
-        <span className="badge badge-danger navbar-badge">3</span>
+        <span className="badge badge-danger navbar-badge">2</span>
       </a>
       <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <a href="#" className="dropdown-item">
@@ -102,7 +108,7 @@ function Header() {
     <li className="nav-item dropdown">
       <a className="nav-link" data-toggle="dropdown" href="#">
         <i className="far fa-bell" />
-        <span className="badge badge-warning navbar-badge">15</span>
+        <span className="badge badge-warning navbar-badge">13</span>
       </a>
       <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <span className="dropdown-item dropdown-header">15 Notifications</span>
@@ -125,15 +131,12 @@ function Header() {
         <a href="#" className="dropdown-item dropdown-footer">See All Notifications</a>
       </div>
     </li>
+   
     <li className="nav-item">
-      <a className="nav-link" data-widget="fullscreen" href="#" role="button">
-        <i className="fas fa-expand-arrows-alt" />
+      <a className="nav-link" href="#" onClick={logout} role="button">
+        <i className="fas fa-th-large" /> Logout
       </a>
-    </li>
-    <li className="nav-item">
-      <a className="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-        <i className="fas fa-th-large" />
-      </a>
+      
     </li>
   </ul>
 </nav>
