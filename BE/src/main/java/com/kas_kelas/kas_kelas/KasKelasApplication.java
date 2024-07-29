@@ -1,9 +1,7 @@
 package com.kas_kelas.kas_kelas;
 
 import com.kas_kelas.kas_kelas.models.entity.Roles;
-import com.kas_kelas.kas_kelas.models.entity.Users;
-import com.kas_kelas.kas_kelas.models.repository.RoleRepository;
-import com.kas_kelas.kas_kelas.models.repository.UserRepository;
+import com.kas_kelas.kas_kelas.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,10 +17,7 @@ import java.util.List;
 public class KasKelasApplication {
 
 	@Autowired
-	private UserRepository userRepository;
-
-	@Autowired
-	private RoleRepository roleRepository;
+	private RoleService roleService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(KasKelasApplication.class, args);
@@ -38,18 +33,14 @@ public class KasKelasApplication {
 	CommandLineRunner init() {
 		return args -> {
 
-			List<Roles> listRoles = new ArrayList<>();
-
-
 			Roles role = new Roles();
 			role.setName("administration");
-			listRoles.add(role);
 
+			roleService.createRole(role);
 			Roles role2 = new Roles();
 			role2.setName("user");
-			listRoles.add(role2);
 
-			roleRepository.saveAll(listRoles);
+			roleService.createRole(role2);
 
 		};
 	}

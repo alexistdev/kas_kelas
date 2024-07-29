@@ -1,6 +1,6 @@
 package com.kas_kelas.kas_kelas.controllers;
 
-import com.kas_kelas.kas_kelas.models.entity.Role;
+import com.kas_kelas.kas_kelas.models.entity.Roles;
 import com.kas_kelas.kas_kelas.response.ResponseData;
 import com.kas_kelas.kas_kelas.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +20,10 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping
-    public ResponseEntity<ResponseData<List<Role>>> getAllRoles() {
-        ResponseData<List<Role>> responseData = new ResponseData<>();
-        List<Role> roles = roleService.getAllRoles();
-        if(!roles.isEmpty()){
+    public ResponseEntity<ResponseData<Iterable<Roles>>> getAllRoles() {
+        ResponseData<Iterable<Roles>> responseData = new ResponseData<>();
+        Iterable<Roles> roles = roleService.getAllRoles();
+        if(!roles.iterator().hasNext()){
             responseData.setStatus(true);
             responseData.getMessages().add("Roles found");
             responseData.setPayload(roles);
