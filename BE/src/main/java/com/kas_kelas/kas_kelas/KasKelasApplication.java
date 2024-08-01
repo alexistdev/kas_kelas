@@ -1,7 +1,9 @@
 package com.kas_kelas.kas_kelas;
 
 import com.kas_kelas.kas_kelas.models.entity.Menu;
+import com.kas_kelas.kas_kelas.models.entity.MonthEntity;
 import com.kas_kelas.kas_kelas.models.entity.Role;
+import com.kas_kelas.kas_kelas.models.repository.MonthRepository;
 import com.kas_kelas.kas_kelas.services.MenuService;
 import com.kas_kelas.kas_kelas.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @SpringBootApplication
@@ -26,6 +26,10 @@ public class KasKelasApplication {
 
 	@Autowired
 	private MenuService menuService;
+
+
+	@Autowired
+	private MonthRepository monthRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(KasKelasApplication.class, args);
@@ -71,6 +75,12 @@ public class KasKelasApplication {
 
 			roleService.createRole(role);
 			roleService.createRole(role2);
+
+			MonthEntity monthEntity = new MonthEntity();
+			monthEntity.setName("Agustus");
+			monthEntity.setMonth(7);
+			monthEntity.setYear(2024);
+			monthRepository.save(monthEntity);
 
 		};
 	}
