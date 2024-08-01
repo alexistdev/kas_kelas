@@ -18,11 +18,13 @@ function Login() {
       });
       let token = response.data.payload.token;
       let id = response.data.payload.id;
-      let menuList = response.data.payload.menuList;
+      let menuList = response.data.payload.roles.menuList;
+      let name = response.data.payload.name
 
       localStorage.setItem("token", token);
       localStorage.setItem("id", id);
       localStorage.setItem("menuList", JSON.stringify(menuList));
+      localStorage.setItem("name", name);
       navigate("/dashboard");
     } catch (error) {
       if (error.response) {
